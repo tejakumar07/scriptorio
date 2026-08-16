@@ -45,7 +45,7 @@ BlogRouter.post("/create", authMiddleware, async (c) => {
 })
 
 
-BlogRouter.get("/", async (c) => {
+BlogRouter.get("/bulk", authMiddleware, async (c) => {
     try {
         const prisma = createPrisma(c.env.DATABASE_URL);
 
@@ -54,7 +54,11 @@ BlogRouter.get("/", async (c) => {
                 id: true,
                 title: true,
                 description: true,
-                userId: true
+                user: {
+                    select: {
+                        email: true
+                    }
+                }
             },
             orderBy: {
                 id: "desc"
@@ -86,7 +90,11 @@ BlogRouter.get("/:id", async (c) => {
                 id: true,
                 title: true,
                 description: true,
-                userId: true
+                user: {
+                    select: {
+                        email: true
+                    }
+                }
             }
         });
 
