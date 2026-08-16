@@ -21,7 +21,7 @@ export const Login = () => {
     async function SendRequest() {
         const result = signinInputs.safeParse(inputs);
         if (!result.success) {
-            toast.error(result.error.errors[0].message);
+            toast.error(result.error.issues[0].message);
             return;
         }
 
