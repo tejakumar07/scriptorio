@@ -20,7 +20,7 @@ export const Signup = () => {
     async function sendRequest() {
         const result = signupInputs.safeParse(inputs);
         if (!result.success) {
-            toast.error(result.error.errors[0].message);
+            toast.error(result.error.issues[0].message);
             return;
         }
 
